@@ -18,6 +18,9 @@ The YouTube Video Intelligence Assistant is an AI-powered platform that transfor
 - Generate comprehensive summaries and key insights on demand
 - Navigate through video content conversationally
 
+![Application Screenshot](images/app-screenshot.png)
+*Figure 1: Interactive Chat Interface*
+
 ## 🛠️ Technical Implementation
 
 ### Core Technologies
@@ -38,9 +41,9 @@ The YouTube Video Intelligence Assistant is an AI-powered platform that transfor
 │  YouTube Video  ├────►│  Transcript       ├────►│  Vector Database  │
 │                 │     │  Processing       │     │  (FAISS)          │
 └─────────────────┘     └────────┬──────────┘     └────────┬──────────┘
-                                  │                         │
-                                  │                         │
-                                  ▼                         ▼
+                                 │                         │
+                                 │                         │
+                                 ▼                         ▼
 ┌─────────────────┐     ┌───────────────────┐     ┌───────────────────┐
 │                 │     │                   │     │                   │
 │  User Query     ├────►│  Query Processing ├────►│  Response         │
@@ -48,6 +51,9 @@ The YouTube Video Intelligence Assistant is an AI-powered platform that transfor
 │  Language)      │     │                   │     │  (Groq LLM)       │
 └─────────────────┘     └───────────────────┘     └───────────────────┘
 ```
+
+![System Architecture](images/architecture-diagram.png)
+*Figure 2: High-Level System Architecture*
 
 ## 🚀 Getting Started
 
