@@ -1,0 +1,92 @@
+/* Main container */
+.stApp {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Headers */
+h1, h2, h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+/* Buttons */
+.stButton>button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.stButton>button:hover {
+    background-color: #45a049;
+}
+
+/* Text input */
+.stTextInput>div>div>input {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0.5rem;
+    width: 100%;
+    margin: 0.5rem 0;
+}
+
+/* Sidebar */
+.css-1d391kg {
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+/* Chat messages */
+.stChatMessage {
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border-radius: 4px;
+    background-color: #f1f3f4;
+}
+
+/* Loading spinner */
+.stSpinner>div {
+    margin: 2rem auto;
+}
+
+/* Error messages */
+.stAlert {
+    margin: 1rem 0;
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+/* Success messages */
+.stAlert[data-baseweb="toast"][kind="success"] {
+    background-color: #e6f7ee;
+    color: #006d3a;
+}
+
+/* Error messages */
+.stAlert[data-baseweb="toast"][kind="error"] {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+/* Info messages */
+.stAlert[data-baseweb="toast"][kind="info"] {
+    background-color: #e3f2fd;
+    color: #1565c0;
+}
+
+/* Warning messages */
+.stAlert[data-baseweb="toast"][kind="warning"] {
+    background-color: #fff8e1;
+    color: #ff8f00;
+}
