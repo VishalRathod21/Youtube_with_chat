@@ -4,6 +4,14 @@ import faiss
 from dotenv import load_dotenv
 import streamlit as st
 
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[logging.StreamHandler()]
+)
+logger = logging.getLogger(__name__)
+
 # Suppress FAISS GPU warning
 faiss.verbose = False
 logging.getLogger('faiss').setLevel(logging.ERROR)
@@ -225,19 +233,31 @@ def generate_response(prompt: str, context: str, api_key: str, model_name: str, 
 def process_video(video_url: str, api_key: str) -> bool:
     """Process a YouTube video URL to extract transcript and create vector store."""
     if not video_url:
-        st.error("Please enter a YouTube URL")
+        st.error("❌ Please enter a YouTube URL")
         return False
         
     if not api_key:
-        st.error("Please enter your Groq API Key in the sidebar")
+        st.error("❌ Please enter your Groq API Key in the sidebar")
         return False
+    
+    # Initialize progress bar
+    progress_bar = st.progress(0)
+    status_text = st.empty()
+    
+    try:
+        # Step 1: Fetch transcript (60% of progress)
+        status_text.info("🔍 Fetching video transcript...")
+        progress_bar.progress(20)
         
-    with st.spinner("Processing video..."):
         try:
-            # Get transcript
             st.session_state.transcript = get_transcript(video_url)
+            if not st.session_state.transcript:
+                raise ValueError("No transcript available for this video")
+                
+            progress_bar.progress(60)
+            status_text.info("🧠 Creating embeddings and vector store...")
             
-            # Create embeddings and vector store
+            # Step 2: Create embeddings and vector store (40% of progress)
             with st.spinner("Creating embeddings..."):
                 embeddings = get_embeddings()
                 st.session_state.vector_store = create_vector_store(
@@ -245,14 +265,33 @@ def process_video(video_url: str, api_key: str) -> bool:
                     embeddings
                 )
             
-            st.success("✅ Video processed successfully! You can now ask questions.")
+            progress_bar.progress(100)
+            status_text.success("✅ Video processed successfully! You can now ask questions.")
             return True
             
-        except Exception as e:
-            st.error(f"❌ Error processing video: {str(e)}")
-            st.session_state.transcript = None
-            st.session_state.vector_store = None
+        except ValueError as ve:
+            # Specific error messages from get_transcript
+            status_text.error(f"❌ {str(ve)}")
+            logger.error(f"Validation error processing video: {str(ve)}")
             return False
+            
+        except Exception as e:
+            # Log the full error for debugging
+            logger.error(f"Error processing video: {str(e)}", exc_info=True)
+            status_text.error(f"❌ An error occurred while processing the video. Please try again later.")
+            return False
+            
+    except Exception as e:
+        # Catch-all for any unexpected errors
+        logger.error(f"Unexpected error in process_video: {str(e)}", exc_info=True)
+        status_text.error("❌ An unexpected error occurred. Please try again or check the logs.")
+        return False
+        
+    finally:
+        # Ensure progress bar is complete and cleared
+        progress_bar.empty()
+        if 'progress_bar' in locals():
+            progress_bar.empty()
 
 def initialize_session_state():
     """Initialize session state variables."""

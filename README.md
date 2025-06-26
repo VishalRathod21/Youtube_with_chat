@@ -83,10 +83,25 @@ The YouTube Video Intelligence Assistant is an AI-powered platform that transfor
    ```
 
 4. **Configure environment**
-   Create a `.env` file with your Groq API key:
+   Create a `.env` file based on the `.env.example` template:
+   ```bash
+   cp .env.example .env
    ```
+   
+   Then edit the `.env` file to include your Groq API key and optional proxy settings:
+   ```
+   # Required: Your Groq API key
    GROQ_API_KEY=your_actual_api_key_here
+   
+   # Optional: Proxy configuration (uncomment and set if needed)
+   # HTTP_PROXY=http://your-proxy-address:port
+   # HTTPS_PROXY=http://your-proxy-address:port
+   
+   # Optional: Set log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+   LOG_LEVEL=INFO
    ```
+   
+   Note: Proxy settings are particularly useful if you're experiencing rate limiting or IP blocking from YouTube's servers.
 
 ### Running the Application
 
