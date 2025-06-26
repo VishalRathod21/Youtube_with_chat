@@ -38,9 +38,9 @@ The YouTube Video Intelligence Assistant is an AI-powered platform that transfor
 │  YouTube Video  ├────►│  Transcript       ├────►│  Vector Database  │
 │                 │     │  Processing       │     │  (FAISS)          │
 └─────────────────┘     └────────┬──────────┘     └────────┬──────────┘
-                                  │                         │
-                                  │                         │
-                                  ▼                         ▼
+                                 │                         |
+                                 │                         |
+                                 ▼                         ▼
 ┌─────────────────┐     ┌───────────────────┐     ┌───────────────────┐
 │                 │     │                   │     │                   │
 │  User Query     ├────►│  Query Processing ├────►│  Response         │
