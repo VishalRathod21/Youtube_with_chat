@@ -47,7 +47,7 @@ The YouTube Video Intelligence Assistant is an AI-powered platform that transfor
 ┌─────────────────┐     ┌───────────────────┐     ┌───────────────────┐
 │                 │     │                   │     │                   │
 │  User Query     ├────►│  Query Processing ├────►│  Response         │
-│  (Natural       │     │  & Retrieval     │     │  Generation       │
+│  (Natural       │     │  & Retrieval      │     │  Generation       │
 │  Language)      │     │                   │     │  (Groq LLM)       │
 └─────────────────┘     └───────────────────┘     └───────────────────┘
 ```
@@ -173,4 +173,4 @@ For inquiries, please open an issue or contact [Vishal Rathod](mailto:vishalrath
 
 ---
 
-Built with ❤️ by [Vishal Rathod] 
+Built with ❤️ by Vishal Rathod
